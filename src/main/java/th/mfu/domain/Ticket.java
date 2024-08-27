@@ -17,7 +17,7 @@ public class Ticket {
     private String movie;
 
     @OneToOne(mappedBy = "ticket",cascade = CascadeType.ALL)
-    private Customer customer;
+    private CustomerTemp customer;
 
     private String theatre;
 
@@ -41,11 +41,11 @@ public class Ticket {
         this.movie = movie;
     }
 
-    public Customer getCustomer() {
+    public CustomerTemp getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(CustomerTemp customer) {
         this.customer = customer;
     }
 
