@@ -9,6 +9,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
+@Table(name = "ticket")
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,7 +20,8 @@ public class Ticket {
     @OneToOne(mappedBy = "ticket",cascade = CascadeType.ALL)
     private CustomerTemp customer;
 
-    private String theatre;
+    @OneToOne(mappedBy = "ticket",cascade = CascadeType.ALL)
+    private Theatre theatre;
 
     private String round;
 
@@ -49,11 +51,11 @@ public class Ticket {
         this.customer = customer;
     }
 
-    public String getTheatre() {
+    public Theatre getTheatre() {
         return theatre;
     }
 
-    public void setTheatre(String theatre) {
+    public void setTheatre(Theatre theatre) {
         this.theatre = theatre;
     }
 
@@ -72,5 +74,7 @@ public class Ticket {
     public void setSeat(String seat) {
         this.seat = seat;
     }
+
+    
 
 }

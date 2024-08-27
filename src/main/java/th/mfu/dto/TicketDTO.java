@@ -1,5 +1,6 @@
 package th.mfu.dto;
 import th.mfu.domain.CustomerTemp;
+import th.mfu.domain.Theatre;
 
 public class TicketDTO {
 
@@ -9,7 +10,7 @@ public class TicketDTO {
 
     private CustomerTemp customer;
 
-    private String theatre;
+    private Theatre theatre;
 
     private String round;
 
@@ -39,11 +40,11 @@ public class TicketDTO {
         this.customer = customer;
     }
 
-    public String getTheatre() {
+    public Theatre getTheatre() {
         return theatre;
     }
 
-    public void setTheatre(String theatre) {
+    public void setTheatre(Theatre theatre) {
         this.theatre = theatre;
     }
 
