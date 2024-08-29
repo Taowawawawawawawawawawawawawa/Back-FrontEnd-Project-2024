@@ -1,26 +1,15 @@
-package th.mfu.domain;
+package th.mfu.dto;
+import th.mfu.domain.CustomerTemp;
+import th.mfu.domain.Theatre;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+public class TicketDTO {
 
-@Entity
-@Table(name = "ticket")
-public class Ticket {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String movie;
 
-    @OneToOne(mappedBy = "ticket",cascade = CascadeType.ALL)
     private CustomerTemp customer;
 
-    @OneToOne(mappedBy = "ticket",cascade = CascadeType.ALL)
     private Theatre theatre;
 
     private String round;
@@ -74,7 +63,4 @@ public class Ticket {
     public void setSeat(String seat) {
         this.seat = seat;
     }
-
-    
-
 }
