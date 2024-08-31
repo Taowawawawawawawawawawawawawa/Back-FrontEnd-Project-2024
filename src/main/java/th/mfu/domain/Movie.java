@@ -23,8 +23,6 @@ public class Movie {
     private String length;
 
     private String genre;
-
-    public Movie() {}
     
     public Long getId() {
         return id;

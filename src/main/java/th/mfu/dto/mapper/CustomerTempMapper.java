@@ -10,7 +10,7 @@ import th.mfu.domain.Ticket;
 import th.mfu.dto.CustomerTempDTO;
 import th.mfu.dto.TicketDTO;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface CustomerTempMapper {
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     public void updateCustomerFromDto(CustomerTempDTO dto,@MappingTarget CustomerTemp entity);

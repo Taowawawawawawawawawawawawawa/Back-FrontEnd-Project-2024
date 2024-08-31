@@ -1,17 +1,20 @@
 package th.mfu.dto;
 import th.mfu.domain.CustomerTemp;
+import th.mfu.domain.Movie;
 import th.mfu.domain.Theatre;
 
 public class TicketDTO {
 
     private Long id;
 
-    private String movie;
+    private Long movieId;
 
     private CustomerTemp customer;
 
     private Theatre theatre;
-
+    
+    private Movie movie;
+    
     private String round;
 
     private String seat;
@@ -24,12 +27,12 @@ public class TicketDTO {
         this.id = id;
     }
 
-    public String getMovie() {
-        return movie;
+    public Long getMovieId() {
+        return movieId;
     }
 
-    public void setMovie(String movie) {
-        this.movie = movie;
+    public void setMovieId(Long movieId) {
+        this.movieId = movieId;
     }
 
     public CustomerTemp getCustomer() {
@@ -63,4 +66,6 @@ public class TicketDTO {
     public void setSeat(String seat) {
         this.seat = seat;
     }
+
+
 }

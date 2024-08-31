@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "customer")
 public class CustomerTemp {
@@ -14,7 +16,10 @@ public class CustomerTemp {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String name;
+
     @OneToOne
+    @JsonBackReference
     private Ticket ticket;
 
     public Long getId() {
@@ -31,6 +36,14 @@ public class CustomerTemp {
 
     public void setTicket(Ticket ticket) {
         this.ticket = ticket;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
     
 

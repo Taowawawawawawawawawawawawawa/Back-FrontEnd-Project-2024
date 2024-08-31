@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "theatre")
 public class Theatre {
@@ -18,6 +20,7 @@ public class Theatre {
     private String movie;
 
     @OneToOne
+    @JsonBackReference
     private Ticket ticket;
     
     private String round;

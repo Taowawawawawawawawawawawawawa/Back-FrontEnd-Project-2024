@@ -1,22 +1,26 @@
-package th.mfu.domain;
+package th.mfu.dto;
 
 import java.util.List;
 
 public class MovieDTO {
-    private Long movieID;
+    
+    private Long id;
+    
     private String name;
+    
     private String description;
+    
     private String length;
+    
     private String genre;
-    private List<Long> theatreIDs;
+    // private List<Long> theatreIDs;
 
-    // Getters and Setters
-    public Long getMovieID() {
-        return movieID;
+    public Long getId() {
+        return id;
     }
 
-    public void setMovieID(Long movieID) {
-        this.movieID = movieID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -51,11 +55,5 @@ public class MovieDTO {
         this.genre = genre;
     }
 
-    public List<Long> getTheatreIDs() {
-        return theatreIDs;
-    }
-
-    public void setTheatreIDs(List<Long> theatreIDs) {
-        this.theatreIDs = theatreIDs;
-    }
+   
 }
