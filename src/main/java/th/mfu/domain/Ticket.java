@@ -2,6 +2,7 @@ package th.mfu.domain;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,17 +17,15 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table(name = "ticket")
 public class Ticket {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long movieId;
-
-    @OneToOne
-    @JoinColumn(name = "movie_id", insertable = false, updatable = false)
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "movie_id")
     private Movie movie;
 
-    @OneToOne(mappedBy = "ticket", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "customer_id")
     private CustomerTemp customer;
 
     @OneToOne(mappedBy = "ticket", cascade = CascadeType.ALL)
@@ -43,14 +42,6 @@ public class Ticket {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(Long movieId) {
-        this.movieId = movieId;
     }
 
     public Movie getMovie() {

@@ -18,9 +18,7 @@ public class CustomerTemp {
 
     private String name;
 
-    @OneToOne
-    @JsonBackReference
-    private Ticket ticket;
+   
 
     public Long getId() {
         return id;
@@ -30,13 +28,6 @@ public class CustomerTemp {
         this.id = id;
     }
 
-    public Ticket getTicket() {
-        return ticket;
-    }
-
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
-    }
 
     public String getName() {
         return name;

@@ -7,13 +7,11 @@ public class TicketDTO {
 
     private Long id;
 
-    private Long movieId;
+    private CustomerTempDTO customer;
 
-    private CustomerTemp customer;
-
-    private Theatre theatre;
+    //private Theatre theatre;
     
-    private Movie movie;
+    private MovieDTO movie;
     
     private String round;
 
@@ -27,28 +25,28 @@ public class TicketDTO {
         this.id = id;
     }
 
-    public Long getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(Long movieId) {
-        this.movieId = movieId;
-    }
-
-    public CustomerTemp getCustomer() {
+    public CustomerTempDTO getCustomer() {
         return customer;
     }
 
-    public void setCustomer(CustomerTemp customer) {
+    public void setCustomer(CustomerTempDTO customer) {
         this.customer = customer;
     }
 
-    public Theatre getTheatre() {
-        return theatre;
+    // public Theatre getTheatre() {
+    //     return theatre;
+    // }
+
+    // public void setTheatre(Theatre theatre) {
+    //     this.theatre = theatre;
+    // }
+
+    public MovieDTO getMovie() {
+        return movie;
     }
 
-    public void setTheatre(Theatre theatre) {
-        this.theatre = theatre;
+    public void setMovie(MovieDTO movie) {
+        this.movie = movie;
     }
 
     public String getRound() {
@@ -67,5 +65,6 @@ public class TicketDTO {
         this.seat = seat;
     }
 
+   
 
 }

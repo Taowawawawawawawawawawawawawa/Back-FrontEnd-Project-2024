@@ -25,16 +25,12 @@ public class TicketController {
     private TicketRepository ticketRepository;
 
     @Autowired
-    private MovieRepository movieRepository;
-
-    @Autowired
     private TicketMapper ticketMapper;
 
     @PostMapping("/ticket")
     public ResponseEntity<String> createTicket(@RequestBody TicketDTO ticketDTO){
         Ticket newTicket = new Ticket();
         ticketMapper.updateTicketFromDto(ticketDTO,newTicket);
-        newTicket.setMovie(movieRepository.getById(newTicket.getMovieId()));
         ticketRepository.save(newTicket);
         return new ResponseEntity<String>("createSuccess",HttpStatus.CREATED);
     }

@@ -5,7 +5,7 @@ public class CustomerTempDTO {
 
     private Long id;
 
-    private TicketDTO ticket;
+    private String name;
 
     public Long getId() {
         return id;
@@ -15,13 +15,19 @@ public class CustomerTempDTO {
         this.id = id;
     }
 
-    public TicketDTO getTicket() {
-        return ticket;
+    public String getName() {
+        return name;
     }
 
-    public void setTicket(TicketDTO ticket) {
-        this.ticket = ticket;
+    public void setName(String name) {
+        this.name = name;
     }
+
+    
+
+
+
+ 
 
     
 }
