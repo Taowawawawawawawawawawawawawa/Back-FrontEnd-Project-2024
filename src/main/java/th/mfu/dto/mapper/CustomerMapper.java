@@ -5,16 +5,16 @@ import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
-import th.mfu.domain.CustomerTemp;
+import th.mfu.domain.Customer;
 import th.mfu.domain.Ticket;
-import th.mfu.dto.CustomerTempDTO;
+import th.mfu.dto.CustomerDTO;
 import th.mfu.dto.TicketDTO;
 
 @Mapper(componentModel = "spring")
-public interface CustomerTempMapper {
+public interface CustomerMapper {
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    public void updateCustomerFromDto(CustomerTempDTO dto,@MappingTarget CustomerTemp entity);
+    public void updateCustomerFromDto(CustomerDTO dto,@MappingTarget Customer entity);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    public void updateCustomerFromEntity(CustomerTemp entity,@MappingTarget CustomerTempDTO dto);
+    public void updateCustomerFromEntity(Customer entity,@MappingTarget CustomerDTO dto);
 }

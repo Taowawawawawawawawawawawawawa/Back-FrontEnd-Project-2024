@@ -1,14 +1,18 @@
 package th.mfu.dto;
 
+import java.util.List;
+
 public class TheatreDTO {
-    
+
     private Long id;
 
-    private String movie;
+    private MovieDTO movie;
 
     private String round;
 
-    private SeatDTO seat;
+    private List<SeatDTO> seats;
+
+    private List<TicketDTO> tickets;
 
     public Long getId() {
         return id;
@@ -18,22 +22,14 @@ public class TheatreDTO {
         this.id = id;
     }
 
-    public String getMovie() {
+    public MovieDTO getMovie() {
         return movie;
     }
 
-    public void setMovie(String movie) {
+    public void setMovie(MovieDTO movie) {
         this.movie = movie;
     }
 
-    public SeatDTO getSeat() {
-        return seat;
-    }
-
-    public void setSeat(SeatDTO seat) {
-        this.seat = seat;
-    }
-    
     public String getRound() {
         return round;
     }
@@ -41,4 +37,21 @@ public class TheatreDTO {
     public void setRound(String round) {
         this.round = round;
     }
+
+    public List<SeatDTO> getSeats() {
+        return seats;
+    }
+
+    public void setSeats(List<SeatDTO> seats) {
+        this.seats = seats;
+    }
+
+    public List<TicketDTO> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<TicketDTO> tickets) {
+        this.tickets = tickets;
+    }
+
 }

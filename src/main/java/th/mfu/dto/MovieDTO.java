@@ -2,18 +2,31 @@ package th.mfu.dto;
 
 import java.util.List;
 
+import th.mfu.domain.Theatre;
+
 public class MovieDTO {
-    
+
     private Long id;
-    
+
     private String name;
-    
+
     private String description;
-    
+
     private String length;
-    
+
     private String[] genre;
+
+    private List<Theatre> theatres;
+
     // private List<Long> theatreIDs;
+
+    public List<Theatre> getTheatres() {
+        return theatres;
+    }
+
+    public void setTheatres(List<Theatre> theatres) {
+        this.theatres = theatres;
+    }
 
     public Long getId() {
         return id;
@@ -55,5 +68,4 @@ public class MovieDTO {
         this.genre = genre;
     }
 
-   
 }

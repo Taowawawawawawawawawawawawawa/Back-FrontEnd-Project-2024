@@ -1,21 +1,17 @@
 package th.mfu.dto;
-import th.mfu.domain.CustomerTemp;
+
+import th.mfu.domain.Customer;
 import th.mfu.domain.Movie;
+import th.mfu.domain.Seat;
 import th.mfu.domain.Theatre;
 
 public class TicketDTO {
-
     private Long id;
-
-    private CustomerTempDTO customer;
-
-    //private Theatre theatre;
-    
-    private MovieDTO movie;
-    
+    private Movie movie;
+    private Customer customer;
+    private Theatre theatre;
+    private Seat seat;
     private String round;
-
-    private SeatDTO seat;
 
     public Long getId() {
         return id;
@@ -25,28 +21,36 @@ public class TicketDTO {
         this.id = id;
     }
 
-    public CustomerTempDTO getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(CustomerTempDTO customer) {
-        this.customer = customer;
-    }
-
-    // public Theatre getTheatre() {
-    //     return theatre;
-    // }
-
-    // public void setTheatre(Theatre theatre) {
-    //     this.theatre = theatre;
-    // }
-
-    public MovieDTO getMovie() {
+    public Movie getMovie() {
         return movie;
     }
 
-    public void setMovie(MovieDTO movie) {
+    public void setMovie(Movie movie) {
         this.movie = movie;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Theatre getTheatre() {
+        return theatre;
+    }
+
+    public void setTheatre(Theatre theatre) {
+        this.theatre = theatre;
+    }
+
+    public Seat getSeat() {
+        return seat;
+    }
+
+    public void setSeat(Seat seat) {
+        this.seat = seat;
     }
 
     public String getRound() {
@@ -56,15 +60,5 @@ public class TicketDTO {
     public void setRound(String round) {
         this.round = round;
     }
-
-    public SeatDTO getSeat() {
-        return seat;
-    }
-
-    public void setSeat(SeatDTO seat) {
-        this.seat = seat;
-    }
-
-   
 
 }

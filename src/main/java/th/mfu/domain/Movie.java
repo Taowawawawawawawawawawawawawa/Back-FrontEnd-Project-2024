@@ -2,13 +2,11 @@ package th.mfu.domain;
 
 import java.util.List;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
 
 @Entity
 public class Movie {
@@ -23,7 +21,18 @@ public class Movie {
     private String length;
 
     private String[] genre;
-    
+
+    @OneToMany(mappedBy = "movie")
+    private List<Theatre> theatres;
+
+    public List<Theatre> getTheatres() {
+        return theatres;
+    }
+
+    public void setTheatres(List<Theatre> theatres) {
+        this.theatres = theatres;
+    }
+
     public Long getId() {
         return id;
     }
@@ -63,5 +72,5 @@ public class Movie {
     public void setGenre(String[] genre) {
         this.genre = genre;
     }
-    
+
 }

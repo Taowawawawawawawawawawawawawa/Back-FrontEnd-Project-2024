@@ -1,11 +1,12 @@
 package th.mfu.dto;
 
-
-public class CustomerTempDTO {
+public class CustomerDTO {
 
     private Long id;
 
     private String name;
+
+    private int age;
 
     public Long getId() {
         return id;
@@ -23,11 +24,12 @@ public class CustomerTempDTO {
         this.name = name;
     }
 
-    
+    public int getAge() {
+        return age;
+    }
 
+    public void setAge(int age) {
+        this.age = age;
+    }
 
-
- 
-
-    
 }

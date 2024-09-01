@@ -1,6 +1,5 @@
 package th.mfu.domain;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,8 +10,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 @Table(name = "ticket")
 public class Ticket {
@@ -20,21 +17,23 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "movie_id")
     private Movie movie;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id")
-    private CustomerTemp customer;
+    private Customer customer;
 
-    @OneToOne(mappedBy = "ticket", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @ManyToOne
+    @JoinColumn(name = "theatre_id")
     private Theatre theatre;
 
-    private String round;
-
+    @OneToOne
+    @JoinColumn(name = "seat_id")
     private Seat seat;
+
+    private String round;
 
     public Long getId() {
         return id;
@@ -52,11 +51,11 @@ public class Ticket {
         this.movie = movie;
     }
 
-    public CustomerTemp getCustomer() {
+    public Customer getCustomer() {
         return customer;
     }
 
-    public void setCustomer(CustomerTemp customer) {
+    public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
@@ -68,14 +67,6 @@ public class Ticket {
         this.theatre = theatre;
     }
 
-    public String getRound() {
-        return round;
-    }
-
-    public void setRound(String round) {
-        this.round = round;
-    }
-
     public Seat getSeat() {
         return seat;
     }
@@ -84,7 +75,12 @@ public class Ticket {
         this.seat = seat;
     }
 
-    
-    
+    public String getRound() {
+        return round;
+    }
+
+    public void setRound(String round) {
+        this.round = round;
+    }
 
 }

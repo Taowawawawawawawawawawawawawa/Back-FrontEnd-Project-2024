@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Seat {
@@ -19,6 +21,18 @@ public class Seat {
     private boolean vip;
 
     private boolean avaliable;
+
+    @ManyToOne
+    @JoinColumn(name = "theatre_id")
+    private Theatre theatre;
+
+    public Theatre getTheatre() {
+        return theatre;
+    }
+
+    public void setTheatre(Theatre theatre) {
+        this.theatre = theatre;
+    }
 
     public Long getId() {
         return id;
@@ -60,5 +74,4 @@ public class Seat {
         this.avaliable = avaliable;
     }
 
-    
 }
