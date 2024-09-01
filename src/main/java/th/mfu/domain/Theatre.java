@@ -24,7 +24,7 @@ public class Theatre {
     private Ticket ticket;
     
     private String round;
-    private String seat;
+    private Seat seat;
     public Long getId() {
         return id;
     }
@@ -49,10 +49,10 @@ public class Theatre {
     public void setRound(String round) {
         this.round = round;
     }
-    public String getSeat() {
+    public Seat getSeat() {
         return seat;
     }
-    public void setSeat(String seat) {
+    public void setSeat(Seat seat) {
         this.seat = seat;
     }
 

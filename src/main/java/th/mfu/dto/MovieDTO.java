@@ -12,7 +12,7 @@ public class MovieDTO {
     
     private String length;
     
-    private String genre;
+    private String[] genre;
     // private List<Long> theatreIDs;
 
     public Long getId() {
@@ -47,11 +47,11 @@ public class MovieDTO {
         this.length = length;
     }
 
-    public String getGenre() {
+    public String[] getGenre() {
         return genre;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(String[] genre) {
         this.genre = genre;
     }
 

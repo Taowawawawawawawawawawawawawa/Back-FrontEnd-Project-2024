@@ -22,7 +22,7 @@ public class Movie {
 
     private String length;
 
-    private String genre;
+    private String[] genre;
     
     public Long getId() {
         return id;
@@ -56,11 +56,11 @@ public class Movie {
         this.length = length;
     }
 
-    public String getGenre() {
+    public String[] getGenre() {
         return genre;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(String[] genre) {
         this.genre = genre;
     }
     

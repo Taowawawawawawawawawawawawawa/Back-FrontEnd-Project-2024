@@ -8,7 +8,7 @@ public class TheatreDTO {
 
     private String round;
 
-    private String seat;
+    private SeatDTO seat;
 
     public Long getId() {
         return id;
@@ -26,11 +26,11 @@ public class TheatreDTO {
         this.movie = movie;
     }
 
-    public String getSeat() {
+    public SeatDTO getSeat() {
         return seat;
     }
 
-    public void setSeat(String seat) {
+    public void setSeat(SeatDTO seat) {
         this.seat = seat;
     }
     

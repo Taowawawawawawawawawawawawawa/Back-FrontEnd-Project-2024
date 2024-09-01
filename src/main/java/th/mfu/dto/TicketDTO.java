@@ -15,7 +15,7 @@ public class TicketDTO {
     
     private String round;
 
-    private String seat;
+    private SeatDTO seat;
 
     public Long getId() {
         return id;
@@ -57,11 +57,11 @@ public class TicketDTO {
         this.round = round;
     }
 
-    public String getSeat() {
+    public SeatDTO getSeat() {
         return seat;
     }
 
-    public void setSeat(String seat) {
+    public void setSeat(SeatDTO seat) {
         this.seat = seat;
     }
 

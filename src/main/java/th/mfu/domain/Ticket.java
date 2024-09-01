@@ -34,7 +34,7 @@ public class Ticket {
 
     private String round;
 
-    private String seat;
+    private Seat seat;
 
     public Long getId() {
         return id;
@@ -76,11 +76,11 @@ public class Ticket {
         this.round = round;
     }
 
-    public String getSeat() {
+    public Seat getSeat() {
         return seat;
     }
 
-    public void setSeat(String seat) {
+    public void setSeat(Seat seat) {
         this.seat = seat;
     }
 
