@@ -21,6 +21,9 @@
 		<!-- <module>simple-main</module> -->
 		<module>microservice-customers</module>
 		<module>microservice-movie</module>
+		<module>microservice-theatre</module>
+		<module>microservice-ticket</module>
+		<module>microservice-payment</module>
 	</modules>
 	
 	<dependencies>
