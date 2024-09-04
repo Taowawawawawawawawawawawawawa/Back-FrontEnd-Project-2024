@@ -1,7 +1,5 @@
 package th.mfu.dto;
 
-import th.mfu.domain.Theatre;
-
 public class SeatDTO {
 
     private Long id;
@@ -9,13 +7,13 @@ public class SeatDTO {
     private int column;
     private boolean vip;
     private boolean avaliable;
-    private Theatre theatre;
+    private TheatreDTO theatre;
 
-    public Theatre getTheatre() {
+    public TheatreDTO getTheatre() {
         return theatre;
     }
 
-    public void setTheatre(Theatre theatre) {
+    public void setTheatre(TheatreDTO theatre) {
         this.theatre = theatre;
     }
 

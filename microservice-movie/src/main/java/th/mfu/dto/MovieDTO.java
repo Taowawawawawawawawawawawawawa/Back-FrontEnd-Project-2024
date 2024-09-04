@@ -1,9 +1,5 @@
 package th.mfu.dto;
 
-import java.util.List;
-
-// import th.mfu.domain.Theatre;
-
 public class MovieDTO {
 
     private Long id;
@@ -14,8 +10,17 @@ public class MovieDTO {
 
     private String length;
 
-    private String genre;
+    private String[] genre;
+    
+    private String picture;
 
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
     public Long getId() {
         return id;
     }
@@ -48,11 +53,11 @@ public class MovieDTO {
         this.length = length;
     }
 
-    public String getGenre() {
+    public String[] getGenre() {
         return genre;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(String[] genre) {
         this.genre = genre;
     }
 

@@ -1,7 +1,5 @@
     package th.mfu.domain;
 
-    import java.util.List;
-
     import javax.persistence.Entity;
     import javax.persistence.GeneratedValue;
     import javax.persistence.GenerationType;
@@ -19,7 +17,17 @@
 
         private String length;
 
-        private String genre;
+        private String[] genre;
+
+        private String picture;
+
+        public String getPicture() {
+            return picture;
+        }
+
+        public void setPicture(String picture) {
+            this.picture = picture;
+        }
 
         public Long getId() {
             return id;
@@ -53,11 +61,11 @@
             this.length = length;
         }
 
-        public String getGenre() {
+        public String[] getGenre() {
             return genre;
         }
 
-        public void setGenre(String genre) {
+        public void setGenre(String[] genre) {
             this.genre = genre;
         }
 

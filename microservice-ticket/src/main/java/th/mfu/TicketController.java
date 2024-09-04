@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import th.mfu.domain.Ticket;
 import th.mfu.dto.TicketDTO;
 import th.mfu.dto.mapper.TicketMapper;
-import th.mfu.repository.MovieRepository;
 import th.mfu.repository.TicketRepository;
 
 @RestController

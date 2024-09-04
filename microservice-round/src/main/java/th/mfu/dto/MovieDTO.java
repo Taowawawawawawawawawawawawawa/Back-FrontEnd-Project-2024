@@ -1,17 +1,7 @@
-package th.mfu.domain;
+package th.mfu.dto;
 
-import java.util.List;
+public class MovieDTO {
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-@Entity
-public class Movie {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
@@ -22,15 +12,14 @@ public class Movie {
 
     private String[] genre;
 
-    @OneToMany(mappedBy = "movie")
-    private List<Theatre> theatres;
+    private String picture;
 
-    public List<Theatre> getTheatres() {
-        return theatres;
+    public String getPicture() {
+        return picture;
     }
 
-    public void setTheatres(List<Theatre> theatres) {
-        this.theatres = theatres;
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public Long getId() {

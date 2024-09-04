@@ -1,36 +1,19 @@
-package th.mfu.domain;
+package th.mfu.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+public class SeatDTO {
 
-@Entity
-public class Seat {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private char row;
-
     private int column;
-
     private boolean vip;
-
     private boolean avaliable;
+    private TheatreDTO theatre;
 
-    @ManyToOne
-    @JoinColumn(name = "theatre_id")
-    private Theatre theatre;
-
-    public Theatre getTheatre() {
+    public TheatreDTO getTheatre() {
         return theatre;
     }
 
-    public void setTheatre(Theatre theatre) {
+    public void setTheatre(TheatreDTO theatre) {
         this.theatre = theatre;
     }
 
@@ -73,5 +56,4 @@ public class Seat {
     public void setAvaliable(boolean avaliable) {
         this.avaliable = avaliable;
     }
-
 }

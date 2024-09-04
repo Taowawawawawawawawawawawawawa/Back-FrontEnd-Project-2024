@@ -1,13 +1,9 @@
 package th.mfu.domain;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,23 +13,11 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "movie_id")
-    private Movie movie;
+    private Long customerID;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
-
-    @ManyToOne
-    @JoinColumn(name = "theatre_id")
-    private Theatre theatre;
-
-    @OneToOne
-    @JoinColumn(name = "seat_id")
-    private Seat seat;
-
-    private String round;
+    private Long roundID;
+    
+    private Long seatID;
 
     public Long getId() {
         return id;
@@ -43,44 +27,27 @@ public class Ticket {
         this.id = id;
     }
 
-    public Movie getMovie() {
-        return movie;
+    public Long getCustomerID() {
+        return customerID;
     }
 
-    public void setMovie(Movie movie) {
-        this.movie = movie;
+    public void setCustomerID(Long customerID) {
+        this.customerID = customerID;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Long getSeatID() {
+        return seatID;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setSeatID(Long seatID) {
+        this.seatID = seatID;
     }
 
-    public Theatre getTheatre() {
-        return theatre;
+    public Long getRoundID() {
+        return roundID;
     }
 
-    public void setTheatre(Theatre theatre) {
-        this.theatre = theatre;
+    public void setRoundID(Long roundID) {
+        this.roundID = roundID;
     }
-
-    public Seat getSeat() {
-        return seat;
-    }
-
-    public void setSeat(Seat seat) {
-        this.seat = seat;
-    }
-
-    public String getRound() {
-        return round;
-    }
-
-    public void setRound(String round) {
-        this.round = round;
-    }
-
 }
