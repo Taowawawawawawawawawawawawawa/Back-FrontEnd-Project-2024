@@ -8,6 +8,18 @@ public class CustomerDTO {
 
     private int age;
 
+    private String phoneNum;
+    
+    private String pass;
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
     public Long getId() {
         return id;
     }
@@ -30,6 +42,14 @@ public class CustomerDTO {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
     }
 
     

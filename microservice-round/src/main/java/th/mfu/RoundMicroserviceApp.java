@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class PaymentMicroserviceApp {
+public class RoundMicroserviceApp {
     public static void main(String[] args) {
-        SpringApplication.run(PaymentMicroserviceApp.class, args);
+        SpringApplication.run(RoundMicroserviceApp.class, args);
     }
 }

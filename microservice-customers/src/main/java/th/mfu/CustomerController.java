@@ -34,6 +34,7 @@ public class CustomerController {
         customerRepository.save(newCustomer);
         return new ResponseEntity<String>("create success",HttpStatus.CREATED);
     }
+    
     @GetMapping("/customer/{id}")
     public ResponseEntity<CustomerDTO> getCustomer(@PathVariable Long id){
         Optional<Customer> customer = customerRepository.findById(id);

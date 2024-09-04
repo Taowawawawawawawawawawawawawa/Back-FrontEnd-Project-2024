@@ -23,11 +23,10 @@
 		<module>microservice-movie</module>
 		<module>microservice-theatre</module>
 		<module>microservice-ticket</module>
-		<module>microservice-payment</module>
+		<module>microservice-round</module>
 	</modules>
 	
 	<dependencies>
-		
 		<!-- Apache Commons utilities -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>

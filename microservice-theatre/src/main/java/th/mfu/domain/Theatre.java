@@ -19,14 +19,10 @@ public class Theatre {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "movie_id")
-    private Movie movie;
 
     @OneToMany(mappedBy = "theatre", cascade = CascadeType.ALL)
     private List<Seat> seats;
 
-    private String round;
 
     public Long getId() {
         return id;
@@ -34,14 +30,6 @@ public class Theatre {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Movie getMovie() {
-        return movie;
-    }
-
-    public void setMovie(Movie movie) {
-        this.movie = movie;
     }
 
     public List<Seat> getSeats() {
@@ -52,13 +40,4 @@ public class Theatre {
         this.seats = seats;
     }
 
-    public String getRound() {
-        return round;
-    }
-
-    public void setRound(String round) {
-        this.round = round;
-    }
-
-    
 }
