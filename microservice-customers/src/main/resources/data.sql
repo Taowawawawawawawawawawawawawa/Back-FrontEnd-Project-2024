@@ -1,20 +1,44 @@
-INSERT INTO Customer (id,name, age) VALUES (2,'John Doe', 30);
-INSERT INTO Customer (id,name, age) VALUES (1,'Jane Smith', 25);
+-- Insert Customer data
+INSERT INTO customer (id, name, age, phoneNum, pass) VALUES (1, 'John Doe', 28, '123-456-7890', 'password123');
+INSERT INTO customer (id, name, age, phoneNum, pass) VALUES (2, 'Jane Smith', 35, '987-654-3210', 'password456');
+INSERT INTO customer (id, name, age, phoneNum, pass) VALUES (3, 'Alice Johnson', 22, '555-123-4567', 'alicePass');
+INSERT INTO customer (id, name, age, phoneNum, pass) VALUES (4, 'Bob Brown', 45, '444-987-6543', 'bobSecurePass');
+INSERT INTO customer (id, name, age, phoneNum, pass) VALUES (5, 'Charlie Green', 30, '321-555-7890', 'charlieCode');
 
--- INSERT INTO Movie (id,name, description, length, genre) 
--- VALUES (1,'The Matrix', 'A computer hacker learns about the true nature of his reality.', '2h 16m', 'Action, Sci-Fi');
--- INSERT INTO Movie (id,name, description, length, genre) 
--- VALUES (2,'Inception', 'A thief who steals corporate secrets through the use of dream-sharing technology.', '2h 28m', 'Action, Adventure, Sci-Fi');
-
--- INSERT INTO Theatre (id,movie_id, round) VALUES (1,1, 'Round 1');
--- INSERT INTO Theatre (id,movie_id, round) VALUES (2,2, 'Round 2');
-
--- INSERT INTO seat (id, row, column, vip, available, theatre_id) VALUES (1, 'A', 5, TRUE, TRUE, 1);
--- INSERT INTO seat (id, row, column, vip, available, theatre_id) VALUES (2, 'B', 6, FALSE, TRUE, 1);
-
-
--- INSERT INTO Ticket (id,movie_id, customer_id,theatre_id, seat_id, round) 
--- VALUES (1,1, 1, 1,1,'Round 1');
--- INSERT INTO Ticket (id,movie_id, customer_id, theatre_id,seat_id, round) 
--- VALUES (2,2, 2, 2,2, 'Round 2');
-
+-- [
+--     {
+--         "id": 1,
+--         "name": "John Doe",
+--         "age": 28,
+--         "phoneNum": "123-456-7890",
+--         "pass": "password123"
+--     },
+--     {
+--         "id": 2,
+--         "name": "Jane Smith",
+--         "age": 35,
+--         "phoneNum": "987-654-3210",
+--         "pass": "password456"
+--     },
+--     {
+--         "id": 3,
+--         "name": "Alice Johnson",
+--         "age": 22,
+--         "phoneNum": "555-123-4567",
+--         "pass": "alicePass"
+--     },
+--     {
+--         "id": 4,
+--         "name": "Bob Brown",
+--         "age": 45,
+--         "phoneNum": "444-987-6543",
+--         "pass": "bobSecurePass"
+--     },
+--     {
+--         "id": 5,
+--         "name": "Charlie Green",
+--         "age": 30,
+--         "phoneNum": "321-555-7890",
+--         "pass": "charlieCode"
+--     }
+-- ]
