@@ -1,11 +1,7 @@
 package th.mfu.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "ticket")
 public class TicketDTO {
+
     private Long id;
 
     private CustomerDTO customer;

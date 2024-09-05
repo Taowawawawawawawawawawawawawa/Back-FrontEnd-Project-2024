@@ -1,4 +1,4 @@
-package th.mfu;
+package th.mfu.controller;
 
 import java.util.Optional;
 
@@ -24,9 +24,7 @@ public class CustomerController {
 
     @Autowired
     private CustomerMapper customerMapper;
-
-
-
+    
     @PostMapping("/customer")
     public ResponseEntity<String> createCustomer(@RequestBody CustomerDTO dto){
         Customer newCustomer = new Customer();
