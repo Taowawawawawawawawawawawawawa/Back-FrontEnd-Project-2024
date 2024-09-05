@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import th.mfu.dto.TheatreDTO;
 
-@FeignClient(name = "cinemaTheatre",url = "http://localhost:8200")
+@FeignClient(name = "cinemaTheatre",url = "http://localhost:8300")
 public interface TheatreClient {
     @GetMapping("/theatre/{id}")
     TheatreDTO getTheatreById(@PathVariable("id") Long id);

@@ -1,20 +1,20 @@
--- Insert Theatre data
-INSERT INTO theatre (id) VALUES (1);
-INSERT INTO theatre (id) VALUES (2);
+-- -- Insert Theatre data
+-- INSERT INTO theatre (id) VALUES (1);
+-- INSERT INTO theatre (id) VALUES (2);
 
--- Insert Seat data for Theatre 1
-INSERT INTO seat (id, row, column, vip, avaliable, theatre_id) VALUES (1, 'A', 1, true, true, 1);
-INSERT INTO seat (id, row, column, vip, avaliable, theatre_id) VALUES (2, 'A', 2, true, false, 1);
-INSERT INTO seat (id, row, column, vip, avaliable, theatre_id) VALUES (3, 'B', 1, false, true, 1);
-INSERT INTO seat (id, row, column, vip, avaliable, theatre_id) VALUES (4, 'B', 2, false, true, 1);
+-- -- Insert Seat data for Theatre 1
+-- INSERT INTO seat (id, row, column, vip, avaliable, theatre_id) VALUES (1, 'A', 1, true, true, 1);
+-- INSERT INTO seat (id, row, column, vip, avaliable, theatre_id) VALUES (2, 'A', 2, true, false, 1);
+-- INSERT INTO seat (id, row, column, vip, avaliable, theatre_id) VALUES (3, 'B', 1, false, true, 1);
+-- INSERT INTO seat (id, row, column, vip, avaliable, theatre_id) VALUES (4, 'B', 2, false, true, 1);
 
--- Insert Seat data for Theatre 2
-INSERT INTO seat (id, row, column, vip, avaliable, theatre_id) VALUES (5, 'A', 1, true, true, 2);
-INSERT INTO seat (id, row, column, vip, avaliable, theatre_id) VALUES (6, 'A', 2, false, false, 2);
-INSERT INTO seat (id, row, column, vip, avaliable, theatre_id) VALUES (7, 'B', 1, false, true, 2);
-INSERT INTO seat (id, row, column, vip, avaliable, theatre_id) VALUES (8, 'B', 2, true, true, 2);
+-- -- Insert Seat data for Theatre 2
+-- INSERT INTO seat (id, row, column, vip, avaliable, theatre_id) VALUES (5, 'A', 1, true, true, 2);
+-- INSERT INTO seat (id, row, column, vip, avaliable, theatre_id) VALUES (6, 'A', 2, false, false, 2);
+-- INSERT INTO seat (id, row, column, vip, avaliable, theatre_id) VALUES (7, 'B', 1, false, true, 2);
+-- INSERT INTO seat (id, row, column, vip, avaliable, theatre_id) VALUES (8, 'B', 2, true, true, 2);
 
--- TheatreDTO
+-- -- TheatreDTO
 
 -- [
 --     {

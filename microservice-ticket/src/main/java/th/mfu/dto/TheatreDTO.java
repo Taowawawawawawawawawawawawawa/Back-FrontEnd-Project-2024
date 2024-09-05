@@ -5,9 +5,9 @@ import java.util.List;
 public class TheatreDTO {
 
     private Long id;
+    private List<SeatDTO> seats; // Use SeatDTO instead of Seat
 
-    private List<SeatDTO> seats;
-
+    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -23,5 +23,4 @@ public class TheatreDTO {
     public void setSeats(List<SeatDTO> seats) {
         this.seats = seats;
     }
-
 }

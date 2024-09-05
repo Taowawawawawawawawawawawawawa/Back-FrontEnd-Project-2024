@@ -20,20 +20,13 @@ public class Seat {
 
     private boolean vip;
 
-    private boolean avaliable;
+    private boolean available; // Fixed spelling
 
     @ManyToOne
     @JoinColumn(name = "theatre_id")
     private Theatre theatre;
 
-    public Theatre getTheatre() {
-        return theatre;
-    }
-
-    public void setTheatre(Theatre theatre) {
-        this.theatre = theatre;
-    }
-
+    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -66,12 +59,19 @@ public class Seat {
         this.vip = vip;
     }
 
-    public boolean isAvaliable() {
-        return avaliable;
+    public boolean isAvailable() {
+        return available;
     }
 
-    public void setAvaliable(boolean avaliable) {
-        this.avaliable = avaliable;
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
+    public Theatre getTheatre() {
+        return theatre;
+    }
+
+    public void setTheatre(Theatre theatre) {
+        this.theatre = theatre;
+    }
 }

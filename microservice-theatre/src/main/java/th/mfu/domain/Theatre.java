@@ -7,10 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Theatre {
@@ -19,11 +16,10 @@ public class Theatre {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
     @OneToMany(mappedBy = "theatre", cascade = CascadeType.ALL)
     private List<Seat> seats;
 
-
+    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -39,5 +35,4 @@ public class Theatre {
     public void setSeats(List<Seat> seats) {
         this.seats = seats;
     }
-
 }

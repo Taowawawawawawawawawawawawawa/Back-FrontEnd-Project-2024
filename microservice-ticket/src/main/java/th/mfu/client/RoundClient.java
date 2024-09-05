@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import th.mfu.dto.RoundDTO;
 
-@FeignClient(name = "cinemaRound",url = "http://localhost:8200")
+@FeignClient(name = "cinemaRound",url = "http://localhost:8400")
 public interface RoundClient {
     @GetMapping("/round/{id}")
     RoundDTO getRoundById(@PathVariable("id") Long id);

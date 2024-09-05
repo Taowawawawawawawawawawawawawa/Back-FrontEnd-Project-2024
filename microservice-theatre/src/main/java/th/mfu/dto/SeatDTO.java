@@ -1,24 +1,15 @@
 package th.mfu.dto;
 
-import th.mfu.domain.Theatre;
-
 public class SeatDTO {
 
     private Long id;
     private char row;
     private int column;
     private boolean vip;
-    private boolean avaliable;
-    private Theatre theatre;
+    private boolean available; // Fixed spelling
+    private Long theatreId; // Instead of Theatre
 
-    public Theatre getTheatre() {
-        return theatre;
-    }
-
-    public void setTheatre(Theatre theatre) {
-        this.theatre = theatre;
-    }
-
+    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -51,11 +42,19 @@ public class SeatDTO {
         this.vip = vip;
     }
 
-    public boolean isAvaliable() {
-        return avaliable;
+    public boolean isAvailable() {
+        return available;
     }
 
-    public void setAvaliable(boolean avaliable) {
-        this.avaliable = avaliable;
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public Long getTheatreId() {
+        return theatreId;
+    }
+
+    public void setTheatreId(Long theatreId) {
+        this.theatreId = theatreId;
     }
 }
