@@ -4,8 +4,7 @@ import styled from 'styled-components';
 
 import Product from './Product';
 
-function Home({ className, products }) {
-  // ตรวจสอบว่า products เป็น array หรือไม่
+function Home({ className, products = [] }) {  // กำหนดค่าเริ่มต้นให้กับ products
   const isArray = Array.isArray(products);
 
   return (
@@ -35,11 +34,7 @@ Home.propTypes = {
       genre: PropTypes.string,
       picture: PropTypes.string
     })
-  ).isRequired
-};
-
-Home.defaultProps = {
-  products: []
+  )
 };
 
 export default styled(Home)`
@@ -65,3 +60,4 @@ export default styled(Home)`
     font-size: 18px;
   }
 `;
+  

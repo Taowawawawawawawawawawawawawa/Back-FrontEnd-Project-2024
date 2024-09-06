@@ -86,6 +86,7 @@ export default styled(Navbar)`
     text-decoration: none;
     color: inherit;
   }
+  
 
   .nav-items {
     display: flex;

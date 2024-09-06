@@ -30,12 +30,13 @@ public class MovieController {
         movieRepository.save(newMovie);
         return new ResponseEntity<>("Movie created successfully", HttpStatus.CREATED);
     }
+    @CrossOrigin(origins = "http://localhost:3000") // Configure allowed origin here
 
     @GetMapping("/movies/all")
     public ResponseEntity<Collection> getAllMovie() {
         return new ResponseEntity<Collection>(movieRepository.findAll(), HttpStatus.OK);
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     // GET - Get a movie by its ID
     @GetMapping("/movies/{id}")
     public ResponseEntity<MovieDTO> getMovie(@PathVariable Long id) {
