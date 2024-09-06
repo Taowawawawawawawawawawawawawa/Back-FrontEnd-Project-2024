@@ -1,0 +1,63 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "th.mfu.App",
+            "projectName": "microservice-customers"
+        },
+        {
+            "type": "java",
+            "name": "App(1)",
+            "request": "launch",
+            "mainClass": "th.mfu.App",
+            "projectName": "microservice-movie"
+        },
+        {
+            "type": "java",
+            "name": "RoundMicroserviceApp",
+            "request": "launch",
+            "mainClass": "th.mfu.RoundMicroserviceApp",
+            "projectName": "microservice-round"
+        },
+        {
+            "type": "java",
+            "name": "App(2)",
+            "request": "launch",
+            "mainClass": "th.mfu.App",
+            "projectName": "microservice-theatre"
+        },
+        {
+            "type": "java",
+            "name": "App(3)",
+            "request": "launch",
+            "mainClass": "th.mfu.App",
+            "projectName": "microservice-ticket"
+        },
+        {
+            "type": "java",
+            "name": "CustomerMicroserviceApp",
+            "request": "launch",
+            "mainClass": "th.mfu.CustomerMicroserviceApp",
+            "projectName": "microservice-ticket"
+        },
+        {
+            "type": "java",
+            "name": "SpringBootMicroserviceEurekaNamingServerApplication",
+            "request": "launch",
+            "mainClass": "lab.microservice.namingserver.SpringBootMicroserviceEurekaNamingServerApplication",
+            "projectName": "sample-microservice-eureka-naming-server"
+        }
+    ]
+}

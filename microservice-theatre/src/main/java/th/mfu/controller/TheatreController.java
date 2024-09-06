@@ -4,21 +4,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import th.mfu.domain.Seat;
 import th.mfu.domain.Theatre;
 import th.mfu.dto.SeatDTO;
 import th.mfu.dto.TheatreDTO;
+import th.mfu.dto.mapper.SeatMapper;
 import th.mfu.dto.mapper.TheatreMapper;
 import th.mfu.repository.SeatRepository;
 import th.mfu.repository.TheatreRepository;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/theatres")
 public class TheatreController {
 
     @Autowired
@@ -30,44 +33,71 @@ public class TheatreController {
     @Autowired
     private TheatreMapper theatreMapper;
 
-    @PostMapping
+    @Autowired
+    private SeatMapper seatMapper;
+
+    @Autowired
+    private RestTemplate restTemplate; // For making HTTP requests to SeatController
+
+    @PostMapping("/theatres")
     public ResponseEntity<String> createTheatre() {
         Theatre theatre = new Theatre();
-        List<Seat> seats = new ArrayList<>();
+        theatreRepository.save(theatre); // Save theatre first to get its ID
 
         // Create seats A-F rows, 1-10 columns
         for (char row = 'A'; row <= 'F'; row++) {
             for (int col = 1; col <= 10; col++) {
-                Seat seat = new Seat();
-                seat.setRow(row);
-                seat.setColumn(col);
-                seat.setAvailable(true);
-                if (row == 'F') {
-                    seat.setVip(true); // Row F is VIP
-                } else {
-                    seat.setVip(false);
+                SeatDTO seatDTO = new SeatDTO();
+                String rowStr = String.valueOf(row);
+                seatDTO.setSeatRow(rowStr);
+                seatDTO.setSeatColumn(col);
+                seatDTO.setAvailable(true);
+                seatDTO.setVip(row == 'F'); // Row F is VIP
+                seatDTO.setTheatreId(theatre.getId());
+
+                // Post request to SeatController
+                ResponseEntity<String> response = restTemplate.postForEntity(
+                        "http://localhost:8300/seats", // Adjust URL if needed
+                        seatDTO,
+                        String.class);
+
+                if (response.getStatusCode() != HttpStatus.CREATED) {
+                    return new ResponseEntity<>("Error creating seats", HttpStatus.INTERNAL_SERVER_ERROR);
                 }
-                seat.setTheatre(theatre);
-                seats.add(seat);
             }
         }
-        theatre.setSeats(seats);
-        theatreRepository.save(theatre); // Cascade will save seats as well
+
         return new ResponseEntity<>("Theatre created with seats", HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/theatres/{id}")
     public ResponseEntity<TheatreDTO> getTheatre(@PathVariable Long id) {
         Optional<Theatre> theatre = theatreRepository.findById(id);
         if (theatre.isPresent()) {
             TheatreDTO theatreDTO = new TheatreDTO();
             theatreMapper.updateTheatreFromEntity(theatre.get(), theatreDTO);
+            theatreDTO.setSeats(theatre.get().getSeats().stream()
+                    .map(seat -> {
+                        SeatDTO seatDTO = new SeatDTO();
+                        seatMapper.updateSeatFromEntity(seat, seatDTO);
+                        return seatDTO;
+                    })
+                    .collect(Collectors.toList()));
             return new ResponseEntity<>(theatreDTO, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping("/{id}")
+    @GetMapping("/theatres/all")
+    public ResponseEntity<List<TheatreDTO>> getAllTheatre() {
+        List<Theatre> theatres = theatreRepository.findAll();
+        List<TheatreDTO> theatreDTOs = theatres.stream()
+                .map(theatreMapper::toTheatreDTO)
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(theatreDTOs, HttpStatus.OK);
+    }
+
+    @PutMapping("/theatres/{id}")
     public ResponseEntity<String> updateTheatre(@PathVariable Long id, @RequestBody TheatreDTO theatreDTO) {
         Optional<Theatre> theatre = theatreRepository.findById(id);
         if (theatre.isPresent()) {
@@ -79,7 +109,7 @@ public class TheatreController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/theatres/{id}")
     public ResponseEntity<String> partialUpdateTheatre(@PathVariable Long id, @RequestBody TheatreDTO theatreDTO) {
         Optional<Theatre> theatre = theatreRepository.findById(id);
         if (theatre.isPresent()) {
@@ -91,7 +121,7 @@ public class TheatreController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/theatres/{id}")
     public ResponseEntity<String> deleteTheatre(@PathVariable Long id) {
         Optional<Theatre> theatre = theatreRepository.findById(id);
         if (theatre.isPresent()) {

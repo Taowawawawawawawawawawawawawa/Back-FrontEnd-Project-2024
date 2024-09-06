@@ -13,5 +13,5 @@ public interface SeatRepository extends JpaRepository<Seat, Long> {
     List<Seat> findByTheatreId(Long theatreId);
 
     // Find seat by row, column, and theatre ID (used to check if the seat already exists)
-    Optional<Seat> findSeatByRowAndColumnAndTheatreId(char row, int column, Long theatreId);
+    Optional<Seat> findSeatBySeatRowAndSeatColumnAndTheatreId(String row, int column, Long theatreId);
 }

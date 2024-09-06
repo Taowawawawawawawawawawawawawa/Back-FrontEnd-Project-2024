@@ -6,11 +6,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import th.mfu.domain.Seat;
+import th.mfu.domain.Theatre;
 import th.mfu.dto.SeatDTO;
 import th.mfu.dto.mapper.SeatMapper;
 import th.mfu.repository.SeatRepository;
 import th.mfu.repository.TheatreRepository;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +41,12 @@ public class SeatController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+
+     @GetMapping("/all")
+    public ResponseEntity<Collection> getAllSeat() {
+        return new ResponseEntity<Collection>(seatRepository.findAll(), HttpStatus.OK);
+    }
+
     // Get all seats in a theatre
     @GetMapping("/theatre/{theatreId}")
     public ResponseEntity<List<Seat>> getSeatsByTheatre(@PathVariable Long theatreId) {
@@ -52,17 +60,25 @@ public class SeatController {
     // Create a new seat
     @PostMapping
     public ResponseEntity<String> createSeat(@RequestBody SeatDTO seatDTO) {
-        Optional<Seat> existingSeat = seatRepository.findSeatByRowAndColumnAndTheatreId(
-                seatDTO.getRow(), seatDTO.getColumn(), seatDTO.getTheatreId());
+        Optional<Seat> existingSeat = seatRepository.findSeatBySeatRowAndSeatColumnAndTheatreId(
+                seatDTO.getSeatRow(), seatDTO.getSeatColumn(), seatDTO.getTheatreId());
         if (existingSeat.isPresent()) {
             return new ResponseEntity<>("Seat already exists", HttpStatus.CONFLICT);
         }
-
+    
         Seat newSeat = new Seat();
         seatMapper.updateSeatFromDto(seatDTO, newSeat);
+    
+        // Ensure the theatre is set correctly
+        Theatre theatre = theatreRepository.findById(seatDTO.getTheatreId()).orElse(null);
+        if (theatre != null) {
+            newSeat.setTheatre(theatre);
+        }
+    
         seatRepository.save(newSeat);
         return new ResponseEntity<>("Seat created successfully", HttpStatus.CREATED);
     }
+    
 
     // Update seat details
     @PutMapping("/{id}")
