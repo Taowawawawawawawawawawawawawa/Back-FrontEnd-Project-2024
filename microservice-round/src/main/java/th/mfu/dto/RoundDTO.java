@@ -3,11 +3,6 @@ package th.mfu.dto;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -16,7 +11,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 
 public class RoundDTO {
-    
+
     private Long id;
     private TheatreDTO theatre;
     private MovieDTO movie;
@@ -66,5 +61,4 @@ public class RoundDTO {
     public void setMovie(MovieDTO movie) {
         this.movie = movie;
     }
-
 }

@@ -2,59 +2,48 @@ package th.mfu.dto;
 
 public class SeatDTO {
 
-    private Long id;
-    private char row;
-    private int column;
+    private Long seatId;
+    private String seatRow;
+    private int seatColumn;
     private boolean vip;
     private boolean available; // Fixed spelling
     private Long theatreId; // Instead of Theatre
-
-    // Getters and setters
-    public Long getId() {
-        return id;
+    public Long getSeatId() {
+        return seatId;
     }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setSeatId(Long id) {
+        this.seatId = id;
     }
-
-    public char getRow() {
-        return row;
+    public String getSeatRow() {
+        return seatRow;
     }
-
-    public void setRow(char row) {
-        this.row = row;
+    public void setSeatRow(String seatRow) {
+        this.seatRow = seatRow;
     }
-
-    public int getColumn() {
-        return column;
+    public int getSeatColumn() {
+        return seatColumn;
     }
-
-    public void setColumn(int column) {
-        this.column = column;
+    public void setSeatColumn(int seatColumn) {
+        this.seatColumn = seatColumn;
     }
-
     public boolean isVip() {
         return vip;
     }
-
     public void setVip(boolean vip) {
         this.vip = vip;
     }
-
     public boolean isAvailable() {
         return available;
     }
-
     public void setAvailable(boolean available) {
         this.available = available;
     }
-
     public Long getTheatreId() {
         return theatreId;
     }
-
     public void setTheatreId(Long theatreId) {
         this.theatreId = theatreId;
     }
+
+   
 }

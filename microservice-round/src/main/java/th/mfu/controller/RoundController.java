@@ -36,12 +36,12 @@ public class RoundController {
     @PostMapping
     public ResponseEntity<String> createRound(@RequestBody RoundDTO roundDTO) {
         // Retrieve Movie and Theatre from their respective microservices
-        MovieDTO movieDTO = movieClient.getMovieById(roundDTO.getMovie().getId());
-        TheatreDTO theatreDTO = theatreClient.getTheatreById(roundDTO.getTheatre().getId());
+        // MovieDTO movieDTO = movieClient.getMovieById(roundDTO.getMovie().getId());
+        // TheatreDTO theatreDTO = theatreClient.getTheatreById(roundDTO.getTheatre().getId());
 
         // Set the retrieved data in the RoundDTO
-        roundDTO.setMovie(movieDTO);
-        roundDTO.setTheatre(theatreDTO);
+        // roundDTO.setMovie(movieDTO);
+        // roundDTO.setTheatre(theatreDTO);
 
         // Map DTO to Entity and save the round
         Round round = new Round();

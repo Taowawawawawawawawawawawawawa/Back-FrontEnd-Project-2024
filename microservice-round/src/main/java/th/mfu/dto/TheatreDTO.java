@@ -4,16 +4,16 @@ import java.util.List;
 
 public class TheatreDTO {
 
-    private Long id;
+    private Long theatreId;
     private List<SeatDTO> seats; // Use SeatDTO instead of Seat
 
     // Getters and setters
     public Long getId() {
-        return id;
+        return theatreId;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.theatreId = id;
     }
 
     public List<SeatDTO> getSeats() {
