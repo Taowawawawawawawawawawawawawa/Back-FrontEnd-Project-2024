@@ -43,7 +43,7 @@ public class TheatreController {
     public ResponseEntity<String> createTheatre() {
         Theatre theatre = new Theatre();
         theatreRepository.save(theatre); // Save theatre first to get its ID
-
+        List<SeatDTO> seats = new ArrayList<>();
         // Create seats A-F rows, 1-10 columns
         for (char row = 'A'; row <= 'F'; row++) {
             for (int col = 1; col <= 10; col++) {
@@ -54,6 +54,7 @@ public class TheatreController {
                 seatDTO.setAvailable(true);
                 seatDTO.setVip(row == 'F'); // Row F is VIP
                 seatDTO.setTheatreId(theatre.getId());
+                seats.add(seatDTO);
 
                 // Post request to SeatController
                 ResponseEntity<String> response = restTemplate.postForEntity(

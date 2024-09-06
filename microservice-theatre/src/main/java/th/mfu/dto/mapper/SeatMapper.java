@@ -21,7 +21,7 @@ public interface SeatMapper {
     void updateSeatFromDto(SeatDTO dto, @MappingTarget Seat entity);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    @Mapping(target = "theatreId", source = "theatre.id")
+    // @Mapping(target = "theatreId", source = "theatre.id")
     void updateSeatFromEntity(Seat entity, @MappingTarget SeatDTO dto);
 
     @Named("toTheatre")
