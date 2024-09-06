@@ -8,12 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 @Entity
 public class Seat {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long seatId;
 
     @Column(nullable = false, name = "seat_row")
     private String seatRow; // Renamed field
@@ -26,31 +29,31 @@ public class Seat {
 
     @ManyToOne
     @JoinColumn(name = "theatre_id")
-    private Theatre theatre;    
+    private Theatre theatre;
 
-    // Getters and setters
-    public Long getId() {
-        return id;
+    private Long theatreId;
+    public Long getSeatId() {
+        return seatId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setSeatId(Long id) {
+        this.seatId = id;
     }
 
-    public String getRow() {
+    public String getSeatRow() {
         return seatRow;
     }
 
-    public void setSeatRow(String row) {
-        this.seatRow = row;
+    public void setSeatRow(String seatRow) {
+        this.seatRow = seatRow;
     }
 
-    public int getColumn() {
+    public int getSeatColumn() {
         return seatColumn;
     }
 
-    public void setSeatColumn(int column) {
-        this.seatColumn = column;
+    public void setSeatColumn(int seatColumn) {
+        this.seatColumn = seatColumn;
     }
 
     public boolean isVip() {
@@ -76,4 +79,15 @@ public class Seat {
     public void setTheatre(Theatre theatre) {
         this.theatre = theatre;
     }
+
+    public Long getTheatreId() {
+        return theatreId;
+    }
+
+    public void setTheatreId(Long theatreId) {
+        this.theatreId = theatreId;
+    }    
+
+    // Getters and setters
+    
 }

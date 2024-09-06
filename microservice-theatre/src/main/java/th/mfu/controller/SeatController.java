@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import th.mfu.domain.Seat;
 import th.mfu.domain.Theatre;
 import th.mfu.dto.SeatDTO;
@@ -12,8 +11,6 @@ import th.mfu.dto.mapper.SeatMapper;
 import th.mfu.repository.SeatRepository;
 import th.mfu.repository.TheatreRepository;
 
-import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -32,27 +29,10 @@ public class SeatController {
     // Get seat by ID
     @GetMapping("/{id}")
     public ResponseEntity<SeatDTO> getSeatById(@PathVariable Long id) {
-        Optional<Seat> seat = seatRepository.findById(id);
-        if (seat.isPresent()) {
-            SeatDTO seatDTO = new SeatDTO();
-            seatMapper.updateSeatFromEntity(seat.get(), seatDTO);
+        Optional<Seat> seatOpt = seatRepository.findById(id);
+        if (seatOpt.isPresent()) {
+            SeatDTO seatDTO = seatMapper.toSeatDTO(seatOpt.get());
             return new ResponseEntity<>(seatDTO, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-
-     @GetMapping("/all")
-    public ResponseEntity<Collection> getAllSeat() {
-        return new ResponseEntity<Collection>(seatRepository.findAll(), HttpStatus.OK);
-    }
-
-    // Get all seats in a theatre
-    @GetMapping("/theatre/{theatreId}")
-    public ResponseEntity<List<Seat>> getSeatsByTheatre(@PathVariable Long theatreId) {
-        List<Seat> seats = seatRepository.findByTheatreId(theatreId);
-        if (!seats.isEmpty()) {
-            return new ResponseEntity<>(seats, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
@@ -60,48 +40,26 @@ public class SeatController {
     // Create a new seat
     @PostMapping
     public ResponseEntity<String> createSeat(@RequestBody SeatDTO seatDTO) {
-        Optional<Seat> existingSeat = seatRepository.findSeatBySeatRowAndSeatColumnAndTheatreId(
-                seatDTO.getSeatRow(), seatDTO.getSeatColumn(), seatDTO.getTheatreId());
-        if (existingSeat.isPresent()) {
-            return new ResponseEntity<>("Seat already exists", HttpStatus.CONFLICT);
+        Optional<Theatre> theatreOpt = theatreRepository.findById(seatDTO.getTheatreId());
+        if (theatreOpt.isPresent()) {
+            Theatre theatre = theatreOpt.get();
+            Seat seat = seatMapper.toSeat(seatDTO, theatre); // Use the mapper to map DTO to entity
+
+            seatRepository.save(seat); // Save the seat
+            return new ResponseEntity<>("Seat created successfully", HttpStatus.CREATED);
         }
-    
-        Seat newSeat = new Seat();
-        seatMapper.updateSeatFromDto(seatDTO, newSeat);
-    
-        // Ensure the theatre is set correctly
-        Theatre theatre = theatreRepository.findById(seatDTO.getTheatreId()).orElse(null);
-        if (theatre != null) {
-            newSeat.setTheatre(theatre);
-        }
-    
-        seatRepository.save(newSeat);
-        return new ResponseEntity<>("Seat created successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("Theatre not found", HttpStatus.NOT_FOUND);
     }
-    
 
     // Update seat details
     @PutMapping("/{id}")
     public ResponseEntity<String> updateSeat(@PathVariable Long id, @RequestBody SeatDTO seatDTO) {
-        Optional<Seat> seat = seatRepository.findById(id);
-        if (seat.isPresent()) {
-            Seat existingSeat = seat.get();
-            seatMapper.updateSeatFromDto(seatDTO, existingSeat);
-            seatRepository.save(existingSeat);
+        Optional<Seat> seatOpt = seatRepository.findById(id);
+        if (seatOpt.isPresent()) {
+            Seat seat = seatOpt.get();
+            seatMapper.updateSeatFromDto(seatDTO, seat); // Update the seat using the mapper
+            seatRepository.save(seat);
             return new ResponseEntity<>("Seat updated successfully", HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    // Patch seat availability
-    @PatchMapping("/{id}/availability")
-    public ResponseEntity<String> updateSeatAvailability(@PathVariable Long id, @RequestBody boolean available) {
-        Optional<Seat> seat = seatRepository.findById(id);
-        if (seat.isPresent()) {
-            Seat existingSeat = seat.get();
-            existingSeat.setAvailable(available);
-            seatRepository.save(existingSeat);
-            return new ResponseEntity<>("Seat availability updated", HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
@@ -109,10 +67,10 @@ public class SeatController {
     // Delete a seat
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteSeat(@PathVariable Long id) {
-        Optional<Seat> seat = seatRepository.findById(id);
-        if (seat.isPresent()) {
-            seatRepository.delete(seat.get());
-            return new ResponseEntity<>("Seat deleted", HttpStatus.OK);
+        Optional<Seat> seatOpt = seatRepository.findById(id);
+        if (seatOpt.isPresent()) {
+            seatRepository.delete(seatOpt.get());
+            return new ResponseEntity<>("Seat deleted successfully", HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }

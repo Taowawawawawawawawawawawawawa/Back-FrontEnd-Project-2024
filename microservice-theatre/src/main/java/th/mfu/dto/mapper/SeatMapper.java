@@ -13,19 +13,19 @@ import th.mfu.domain.Theatre;
 import th.mfu.dto.SeatDTO;
 import th.mfu.repository.TheatreRepository;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = TheatreMapper.class)
 public interface SeatMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    // @Mapping(target = "theatre", source = "theatreId", qualifiedByName = "toTheatre")
     void updateSeatFromDto(SeatDTO dto, @MappingTarget Seat entity);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    // @Mapping(target = "theatreId", source = "theatre.id")
     void updateSeatFromEntity(Seat entity, @MappingTarget SeatDTO dto);
 
-    @Named("toTheatre")
-    default Theatre toTheatre(Long theatreId, @Autowired TheatreRepository theatreRepository) {
-        return theatreRepository.findById(theatreId).orElse(null);
-    }
+    @Mapping(target = "theatreId", source = "seat.theatre.id")
+    SeatDTO toSeatDTO(Seat seat);
+
+    @Mapping(target = "seatId", source = "dto.seatId")
+    @Mapping(target = "theatre", source = "theatre")  // Explicitly map theatre
+    Seat toSeat(SeatDTO dto, Theatre theatre); // Now pass Theatre directly when calling this method
 }

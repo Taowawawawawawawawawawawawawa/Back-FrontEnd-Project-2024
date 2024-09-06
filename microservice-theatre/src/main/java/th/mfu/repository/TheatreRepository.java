@@ -10,6 +10,8 @@ import th.mfu.domain.Theatre;
 public interface TheatreRepository extends JpaRepository<Theatre,Long> {
     @Query("SELECT t FROM Theatre t LEFT JOIN FETCH t.seats WHERE t.id = :id")
     Theatre findByIdWithSeats(@Param("id") Long id);
+
+    Theatre findByTheatreId(Long id);
 } 
 
 
