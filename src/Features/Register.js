@@ -1,43 +1,72 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import axios from 'axios'; // Import axios to make HTTP requests
 
-const Login = ({ onLogin, className }) => {
+const Register = ({ className }) => {
   const [username, setUsername] = useState('');
+  const [age, setAge] = useState('');
   const [telnumber, setTelnumber] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleRegister = () => {
-    if (password !== confirmPassword) {
-      alert('Passwords do not match');
-      navigate('/Login');
+  const handleRegister = async () => {
+    if (!telnumber || !username ||!age || !password || !confirmPassword) {
+      setError('Please fill out all fields.');
       return;
     }
-    else {
-        alert('โปรดใส่ข้อมูลให้ครบ');
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
+    try {
+      // Send registration request to backend
+      const response = await axios.post('http://localhost:8200/customers', {
+        
+        name: username,
+        age: age,
+        phoneNum: telnumber,
+        pass: password,
+      });
+
+      if (response.status === 201) {
+        alert('Registration successful!');
+        navigate('/login'); // Navigate to login page after successful registration
       }
-  
+    } catch (error) {
+      if (error.response && error.response.status === 409) {
+        setError('Phone number is already registered.');
+      } else {
+        setError('Registration failed. Please try again.');
+      }
+    }
   };
-
-
-
 
   return (
     <div className={className}>
       <h2>Register</h2>
+      {error && <p className="error">{error}</p>}
       <input
         type="text"
         placeholder="เบอร์โทรศัพท์"
         value={telnumber}
         onChange={(e) => setTelnumber(e.target.value)}
       />
-       <input
+      <input
         type="text"
         placeholder="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
+      />
+      <input
+        type="Number"
+        placeholder="Age"
+        value={age}
+        onChange={(e) => setAge(e.target.value)}
       />
       <input
         type="password"
@@ -58,7 +87,7 @@ const Login = ({ onLogin, className }) => {
   );
 };
 
-const StyledLogin = styled(Login)`
+const StyledRegister = styled(Register)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -108,6 +137,11 @@ const StyledLogin = styled(Login)`
     margin-bottom: 20px;
     font-size: 2rem;
   }
+
+  .error {
+    color: red;
+    margin-bottom: 20px;
+  }
 `;
 
-export default StyledLogin;
+export default StyledRegister;

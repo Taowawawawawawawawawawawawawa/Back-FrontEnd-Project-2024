@@ -25,23 +25,6 @@ function Navbar({ className }) {
           HOME
         </Link>
       
-
-        <div className="category-selector">
-          <select
-            value={selectedCategory}
-            onChange={handleCategoryChange}
-          >
-            <option value="All">All Movie</option>
-            <option value="Action">Action</option>
-            <option value="Animation">Animation</option>
-            <option value="Comedy">Comedy</option>
-            <option value="Drama">Drama</option>
-            <option value="Horror">Horror</option>
-            <option value="Mystery">Mystery</option>
-            <option value="Romance">Romance</option>
-            <option value="Sci-Fi">Sci-Fi </option>
-          </select>
-        </div>
         
         <div className="search-container">
           <input
@@ -75,18 +58,15 @@ export default styled(Navbar)`
   padding: 0 2rem;
   position: fixed;
   z-index: 100;
+  justify-content: space-between; /* Ensure brand and nav items are spaced out */
   
-
- 
-
   .brand {
-    font-family: "Copperplate", "Copperplate", fantasy;
+    font-family: "Copperplate", fantasy;
     font-weight: bold;
     font-size: 2.0rem;
     text-decoration: none;
     color: inherit;
   }
-  
 
   .nav-items {
     display: flex;
@@ -104,17 +84,6 @@ export default styled(Navbar)`
     border-radius: 4px;
     font-size: 1rem;
     width: 200px;
-  }
-
-  .category-selector {
-    margin-right: 1rem;
-  }
-
-  .category-selector select {
-    padding: 0.5rem;
-    border: 1px solid #dee2e6;
-    border-radius: 4px;
-    font-size: 1rem;
   }
 
   .Login-product {
@@ -135,5 +104,68 @@ export default styled(Navbar)`
 
   a:hover {
     text-decoration: underline;
+  }
+
+  /* Media queries for responsiveness */
+  @media (max-width: 768px) {
+    .nav-items {
+      flex-direction: column;
+      position: absolute;
+      top: 80px;
+      right: 0;
+      background-color: #FFC0CB;
+      width: 100%;
+      padding: 1rem;
+      display: none; /* Initially hidden for mobile */
+    }
+
+    .nav-items.active {
+      display: flex; /* Show when active */
+    }
+
+    .search-input {
+      width: 100%; /* Full width search bar on smaller screens */
+      margin-bottom: 1rem;
+    }
+
+    .Login-product {
+      margin-bottom: 1rem;
+    }
+
+    .brand {
+      font-size: 1.5rem; /* Adjust font size for brand */
+    }
+
+    .search-container {
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .brand {
+      font-size: 1.2rem; /* Further reduce brand size on very small screens */
+    }
+
+    .search-input {
+      font-size: 0.9rem;
+    }
+
+    .Login-product {
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Hamburger menu for mobile screens */
+  .hamburger {
+    display: none;
+    cursor: pointer;
+    font-size: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .hamburger {
+      display: block; /* Show hamburger menu on mobile */
+    }
   }
 `;

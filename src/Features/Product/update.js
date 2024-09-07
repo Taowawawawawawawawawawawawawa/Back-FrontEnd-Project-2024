@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { updateProfile } from './actions'; 
+import axios from 'axios';
 import styled from 'styled-components';
+import { updateProfile } from './actions'; // Assuming you have an updateProfile action to update Redux state
 
 function EditProfile({ className }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user); // Assuming user data is stored in Redux
 
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -23,7 +24,7 @@ function EditProfile({ className }) {
     }
   }, [user]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (phone.length < 10) {
       setError('Phone number must be at least 10 digits.');
@@ -34,14 +35,24 @@ function EditProfile({ className }) {
       return;
     }
     setError('');
-    dispatch(updateProfile({ name, password, phone }))
-      .then(() => {
-        setSuccess('Profile updated successfully!');
-        navigate('/profile');
-      })
-      .catch((err) => {
-        setError('Failed to update profile.');
+
+    try {
+      const response = await axios.put(`http://localhost:8200/customers/${user.id}`, {
+        name:name,
+        pass: password,
+        phoneNum: phone
       });
+
+      if (response.status === 200) {
+        setSuccess('Profile updated successfully!');
+        // Update the Redux state with the new profile data
+        dispatch(updateProfile({ name, password, phone }));
+        // Navigate to profile page
+        navigate('/profile');
+      }
+    } catch (err) {
+      setError('Failed to update profile.');
+    }
   };
 
   return (
@@ -55,6 +66,7 @@ function EditProfile({ className }) {
           <input
             type="text"
             id="name"
+            placeholder="Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -65,6 +77,7 @@ function EditProfile({ className }) {
           <input
             type="password"
             id="password"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -75,6 +88,7 @@ function EditProfile({ className }) {
           <input
             type="text"
             id="phone"
+            placeholder="เบอร์โทรศัพท์"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
           />
@@ -88,7 +102,10 @@ function EditProfile({ className }) {
 
 export default styled(EditProfile)`
   h1 {
-    color: #333;
+    color: #fff;
+  }
+  label {
+    color: #fff;
   }
 
   .input-group {

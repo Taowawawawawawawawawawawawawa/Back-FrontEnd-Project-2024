@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import axios from 'axios'; // You'll need to install axios with `npm install axios`
+import axios from 'axios'; 
 
-const Login = ({ onLogin, className }) => {
+const Login = ({ className }) => {
   const [telnumber, setTelnumber] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -18,19 +18,14 @@ const Login = ({ onLogin, className }) => {
         });
   
         if (response.status === 200) {
-          localStorage.setItem('auth', 'true');
-          navigate('/');
+          const token = response.data; // Assume token is returned in the response
+          localStorage.setItem('authToken', token); // Store token in localStorage
+          navigate('/'); // Redirect to profile
         }
       } catch (error) {
-        // Display the error message from the backend
         if (error.response) {
-          // Server responded with a status other than 2xx
-          alert(error.response.data);
-        } else if (error.request) {
-          // No response was received from the server
-          alert('Server is not responding. Please try again later.');
+          alert(error.response.data); // Display the error message from the backend
         } else {
-          // Some other error occurred
           alert('An error occurred: ' + error.message);
         }
       }
@@ -87,7 +82,7 @@ const StyledLogin = styled(Login)`
 
   .button-container {
     display: flex;
-    gap: 15px; /* Adjust spacing between buttons */
+    gap: 15px;
   }
 
   button {
