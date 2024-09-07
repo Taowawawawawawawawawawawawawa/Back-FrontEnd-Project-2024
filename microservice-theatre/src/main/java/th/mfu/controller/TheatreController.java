@@ -1,17 +1,18 @@
+
 package th.mfu.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import th.mfu.domain.Seat;
 import th.mfu.domain.Theatre;
-import th.mfu.dto.SeatDTO;
+import th.mfu.domain.Seat;
 import th.mfu.dto.TheatreDTO;
 import th.mfu.dto.mapper.SeatMapper;
 import th.mfu.dto.mapper.TheatreMapper;
-import th.mfu.repository.SeatRepository;
 import th.mfu.repository.TheatreRepository;
+import th.mfu.repository.SeatRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,22 +35,43 @@ public class TheatreController {
     @Autowired
     private TheatreMapper theatreMapper;
 
-    // Get theatre by ID
-    @GetMapping("/{id}")
-    public ResponseEntity<TheatreDTO> getTheatreById(@PathVariable Long id) {
-        Optional<Theatre> theatreOpt = theatreRepository.findById(id);
-        if (theatreOpt.isPresent()) {
-            TheatreDTO theatreDTO = theatreMapper.toTheatreDTO(theatreOpt.get());
-            // Map the seats to SeatDTOs
-            List<SeatDTO> seatDTOs = theatreOpt.get().getSeats().stream()
-                    .map(seatMapper::toSeatDTO)
-                    .collect(Collectors.toList());
-            theatreDTO.setSeats(seatDTOs);
-            return new ResponseEntity<>(theatreDTO, HttpStatus.OK);
+    // POST - Create a theatre and automatically create seats (A-F rows, 10 columns)@RequestBody TheatreDTO theatreDTO
+    @PostMapping
+    @Transactional
+    public ResponseEntity<String> createTheatre() {
+        try {
+            // Create and save the theatre
+            Theatre theatre = new Theatre();
+            //theatre.setId(theatreDTO.getId());
+            theatre = theatreRepository.save(theatre);
+
+            // Automatically create seats (rows A-F, 10 seats per row)
+            List<Seat> seats = generateSeatsForTheatre(theatre);
+            seatRepository.saveAll(seats);
+
+            return new ResponseEntity<>("Theatre and seats created successfully", HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error creating theatre and seats", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    // Helper method to generate seats for a given theatre
+    private List<Seat> generateSeatsForTheatre(Theatre theatre) {
+        char[] rows = {'A', 'B', 'C', 'D', 'E', 'F'};
+        int seatsPerRow = 10;
+        List<Seat> seats = new ArrayList<>();
+
+        for (char row : rows) {
+            for (int number = 1; number <= seatsPerRow; number++) {
+                Seat seat = new Seat();
+                seat.setSeatRow(String.valueOf(row)); // Setting row as A, B, C, etc.
+                seat.setSeatColumn(number); // Seat numbers from 1-10
+                seat.setTheatre(theatre);  // Associate seat with the theatre
+                seats.add(seat);
+            }
+        }
+        return seats;
+    }
     @GetMapping("/all")
     public ResponseEntity<List<TheatreDTO>> getAllTheatre() {
         List<Theatre> theatres = theatreRepository.findAll();
@@ -88,41 +110,6 @@ public class TheatreController {
     // return new ResponseEntity<>("Theatre created with seats",
     // HttpStatus.CREATED);
     // }
-
-    // Create a new theatre
-    @PostMapping
-    public ResponseEntity<String> createTheatre() {
-        // Step 1: Create a new Theatre
-        Theatre theatre = new Theatre();
-        Theatre savedTheatre = theatreRepository.save(theatre); // Save theatre and get the saved instance
-    
-        if (savedTheatre == null || savedTheatre.getId() == null) {
-            return new ResponseEntity<>("Failed to create theatre", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    
-        // Step 2: Generate seats for the theatre (Rows A-F, 10 seats per row)
-        char[] rows = {'A', 'B', 'C', 'D', 'E', 'F'};
-        int numberOfColumns = 10;
-    
-        List<Seat> seats = new ArrayList<>();
-    
-        for (char row : rows) {
-            for (int col = 1; col <= numberOfColumns; col++) {
-                Seat seat = new Seat();
-                seat.setSeatRow(String.valueOf(row));
-                seat.setSeatColumn(col);
-                seat.setTheatre(savedTheatre);  // Associate seat with the saved theatre
-                seat.setTheatreId(savedTheatre.getId());
-                seats.add(seat);  // Add to the list of seats
-            }
-        }
-    
-        // Step 3: Save all seats at once
-        seatRepository.saveAll(seats);
-    
-        return new ResponseEntity<>("Theatre and seats created successfully", HttpStatus.CREATED);
-    }
-
     // Update theatre
     @PutMapping("/{id}")
     public ResponseEntity<String> updateTheatre(@PathVariable Long id, @RequestBody TheatreDTO theatreDTO) {

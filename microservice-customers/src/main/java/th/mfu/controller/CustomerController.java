@@ -44,6 +44,18 @@ public class CustomerController {
         }
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody CustomerDTO dto) {
+        Customer customer = customerRepository.findByPhoneNum(dto.getPhoneNum());
+        if (customer != null && customer.getPass().equals(dto.getPass())) {
+            // Authentication successful
+            return new ResponseEntity<>("Login successful", HttpStatus.OK);
+        } else {
+            // Authentication failed
+            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+        }
+    }
+
     // GET: Get a customer by ID
     @GetMapping("/customers/{id}")
     public ResponseEntity<CustomerDTO> getCustomer(@PathVariable Long id) {
@@ -93,7 +105,7 @@ public class CustomerController {
                 existingCustomer.setAge(dto.getAge());
             }
             if (dto.getPhoneNum() != null) {
-                if (customerRepository.findByPhoneNum(dto.getPhoneNum()) != null){
+                if (customerRepository.findByPhoneNum(dto.getPhoneNum()) != null) {
                     return new ResponseEntity<String>("This phone number is already registered.", HttpStatus.CONFLICT);
                 }
                 existingCustomer.setPhoneNum(dto.getPhoneNum());

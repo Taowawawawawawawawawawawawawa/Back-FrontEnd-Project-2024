@@ -8,6 +8,6 @@ import th.mfu.dto.CustomerDTO;
 
 @FeignClient(name = "cinemaCustomer",url = "http://localhost:8200")
 public interface CustomerClient {
-    @GetMapping("/customer/{id}")
+    @GetMapping("/customers/{id}")
     CustomerDTO getCustomerById(@PathVariable("id") Long id);
 }

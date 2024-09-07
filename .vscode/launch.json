@@ -12,35 +12,44 @@
         },
         {
             "type": "java",
-            "name": "App",
+            "name": "customersApp",
             "request": "launch",
             "mainClass": "th.mfu.App",
             "projectName": "microservice-customers"
         },
         {
             "type": "java",
-            "name": "App(1)",
+            "name": "movieApp",
             "request": "launch",
             "mainClass": "th.mfu.App",
             "projectName": "microservice-movie"
         },
         {
             "type": "java",
-            "name": "RoundMicroserviceApp",
+            "name": "RoundApp",
             "request": "launch",
+            "vmArgs": ["-Dserver.port=8400"],
             "mainClass": "th.mfu.RoundMicroserviceApp",
             "projectName": "microservice-round"
         },
         {
             "type": "java",
-            "name": "App(2)",
+            "name": "RoundAppLoadBalancer",
+            "request": "launch",
+            "vmArgs": ["-Dserver.port=8401"],
+            "mainClass": "th.mfu.RoundMicroserviceApp",
+            "projectName": "microservice-round"
+        },
+        {
+            "type": "java",
+            "name": "theatreApp",
             "request": "launch",
             "mainClass": "th.mfu.App",
             "projectName": "microservice-theatre"
         },
         {
             "type": "java",
-            "name": "App(3)",
+            "name": "ticketApp",
             "request": "launch",
             "mainClass": "th.mfu.App",
             "projectName": "microservice-ticket"

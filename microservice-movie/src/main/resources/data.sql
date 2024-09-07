@@ -14,7 +14,7 @@ VALUES (6, 'One For The Road', 'Boss, a high-end club owner living in New York, 
 INSERT INTO movie (id, name, description, length, genre, picture) 
 VALUES (7, 'Lahn mah', 'A man quits work to care for dying grandmother, motivated by her fortune. He schemes to win her favor before she passes', '125', 'Drama', 'Movie7.jpg'); 
 INSERT INTO movie (id, name, description, length, genre, picture) 
-VALUES (8, 'Friend Zone', 'Many people in this world seem to be wandering along a relationship borderlining 'friends' and 'lovers'', '118', 'Drama', 'Movie8.jpg'); 
+VALUES (8, 'Friend Zone', 'Many people in this world seem to be wandering along a relationship borderlining friends and lovers', '118', 'Drama', 'Movie8.jpg'); 
 INSERT INTO movie (id, name, description, length, genre, picture) 
 VALUES (9, 'Long Live Love!', 'A story about a party-animal Sati, a man whose attitude has left a broken family at home. Meta, his wife, is preparing to leave him. At age 15, his daughter, Namo is already jaded from a lifetime of broken promises', '135', 'Drama', 'Movie9.jpg'); 
 INSERT INTO movie (id, name, description, length, genre, picture) 

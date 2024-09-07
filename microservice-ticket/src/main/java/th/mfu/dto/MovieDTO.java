@@ -13,6 +13,7 @@ public class MovieDTO {
     private String genre;
 
     private String picture;
+    
 
     public String getPicture() {
         return picture;

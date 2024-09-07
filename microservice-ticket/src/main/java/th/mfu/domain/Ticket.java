@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Table(name = "ticket")
 public class Ticket {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private Long customerID;
@@ -18,6 +18,10 @@ public class Ticket {
     private Long roundID;
     
     private Long seatID;
+
+    private Long movieID;
+
+    private Long theatreID;
 
     public Long getId() {
         return id;
@@ -35,6 +39,14 @@ public class Ticket {
         this.customerID = customerID;
     }
 
+    public Long getRoundID() {
+        return roundID;
+    }
+
+    public void setRoundID(Long roundID) {
+        this.roundID = roundID;
+    }
+
     public Long getSeatID() {
         return seatID;
     }
@@ -43,11 +55,24 @@ public class Ticket {
         this.seatID = seatID;
     }
 
-    public Long getRoundID() {
-        return roundID;
+    public Long getMovieID() {
+        return movieID;
     }
 
-    public void setRoundID(Long roundID) {
-        this.roundID = roundID;
+    public void setMovieID(Long movieID) {
+        this.movieID = movieID;
     }
+
+    public Long getTheatreID() {
+        return theatreID;
+    }
+
+    public void setTheatreID(Long theatreID) {
+        this.theatreID = theatreID;
+    }
+
+   
+   
+
+    
 }

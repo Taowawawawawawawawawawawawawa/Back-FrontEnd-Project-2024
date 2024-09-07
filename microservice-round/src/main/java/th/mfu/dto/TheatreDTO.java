@@ -5,15 +5,15 @@ import java.util.List;
 public class TheatreDTO {
 
     private Long theatreId;
-    private List<SeatDTO> seats; // Use SeatDTO instead of Seat
+    private List<SeatDTO> seats;  // Contains the seat details for the theatre
 
     // Getters and setters
-    public Long getId() {
+    public Long getTheatreId() {
         return theatreId;
     }
 
-    public void setId(Long id) {
-        this.theatreId = id;
+    public void setTheatreId(Long theatreId) {
+        this.theatreId = theatreId;
     }
 
     public List<SeatDTO> getSeats() {

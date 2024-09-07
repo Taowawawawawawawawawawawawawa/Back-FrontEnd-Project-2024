@@ -53,7 +53,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>-
+        <dependency>
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-starter-thymeleaf</artifactId>
       </dependency>
@@ -95,6 +95,7 @@
         <artifactId>spring-cloud-starter-openfeign</artifactId>
     </dependency>
 
+    
      <!-- Add CloudSQL Starter for MySQL -->
      <!-- <dependency>
         <groupId>com.google.cloud</groupId>

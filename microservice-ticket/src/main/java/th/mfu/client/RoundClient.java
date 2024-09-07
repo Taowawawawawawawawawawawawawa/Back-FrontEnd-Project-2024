@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import th.mfu.dto.RoundDTO;
 
-@FeignClient(name = "cinemaRound",url = "http://localhost:8400")
+@FeignClient(name = "microservice-round")
 public interface RoundClient {
-    @GetMapping("/round/{id}")
+    @GetMapping("/rounds/{id}")
     RoundDTO getRoundById(@PathVariable("id") Long id);
 }

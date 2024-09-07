@@ -5,18 +5,16 @@ import java.time.LocalTime;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 
 public class RoundDTO {
-    
+
     private Long id;
     private TheatreDTO theatre;
     private MovieDTO movie;
     private LocalDate date;
     private LocalTime time;
+    private Long theatreID;
+    private Long movieID;
 
     public Long getId() {
         return id;
@@ -62,4 +60,19 @@ public class RoundDTO {
         this.movie = movie;
     }
 
+    public Long getTheatreID() {
+        return theatreID;
+    }
+
+    public void setTheatreID(Long theatreID) {
+        this.theatreID = theatreID;
+    }
+
+    public Long getMovieID() {
+        return movieID;
+    }
+
+    public void setMovieID(Long movieID) {
+        this.movieID = movieID;
+    }
 }

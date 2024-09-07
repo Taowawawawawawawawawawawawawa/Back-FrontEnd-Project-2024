@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
 public class LocalDateSerializer extends StdSerializer<LocalDate> {
-    private static DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public LocalDateSerializer() {
         this(null);
@@ -22,6 +22,10 @@ public class LocalDateSerializer extends StdSerializer<LocalDate> {
     @Override
     public void serialize(LocalDate localDate, JsonGenerator jsonGenerator, SerializerProvider serializerProvider)
             throws IOException {
-        jsonGenerator.writeString(localDate.format(FORMATTER));
+        if (localDate == null) {
+            jsonGenerator.writeNull();
+        } else {
+            jsonGenerator.writeString(localDate.format(FORMATTER));
+        }
     }
 }
