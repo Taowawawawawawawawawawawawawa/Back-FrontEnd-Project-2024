@@ -180,7 +180,7 @@ const StyledButton = styled.button`
   &:hover {
     background-color: ${(props) => (props.disabled ? '#ccc' : '#FFC0CB')};
     color: ${(props) => (props.disabled ? '#666' : 'white')};
-  }
+  } 
 `;
 
 export default styled(ShowProduct)`
